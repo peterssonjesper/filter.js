@@ -1,10 +1,21 @@
+#include <math.h>
 #include "../include/complex.h"
 
 #ifndef DFT_H
 #define DFT_H
 
-float comp(int, int, int);
-float real(int, int, int);
-extern void dft(float*, Complex*, int);
+static float comp(float);
+static float real(float);
+void dft(float*, Complex*, int);
+
+// Return complex part of e^phi
+static inline float comp(float phi) {
+  return sin(phi);
+}
+
+// Return real part of e^phi
+static inline float real(float phi) {
+  return cos(phi);
+}
 
 #endif
