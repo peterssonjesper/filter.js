@@ -37,3 +37,37 @@ TEST(DFT, two_samples) {
   EXPECT_NEAR(output[1].r, -2, ROUNDING_ERROR);
   EXPECT_NEAR(output[1].c, 0, ROUNDING_ERROR);
 }
+
+TEST(INVERSE_DFT, no_samples) {
+  Complex *frequency_samples = 0;
+  float *output = 0;
+  int length = 0;
+
+  inverse_dft(frequency_samples, output, length);
+}
+
+TEST(INVERSE_DFT, one_sample) {
+  Complex frequency_samples[1] = {
+    (Complex) { 1, 0 }
+  };
+  float output[1];
+  int length = 1;
+
+  inverse_dft(frequency_samples, output, length);
+
+  EXPECT_NEAR(output[0], 1, ROUNDING_ERROR);
+}
+
+TEST(INVERSE_DFT, two_samples) {
+  Complex frequency_samples[2] = {
+    (Complex) { 0, 0 },
+    (Complex) { -2, 0 }
+  };
+  float output[2];
+  int length = 2;
+
+  inverse_dft(frequency_samples, output, length);
+
+  EXPECT_NEAR(output[0], -1, ROUNDING_ERROR);
+  EXPECT_NEAR(output[1], 1, ROUNDING_ERROR);
+}
