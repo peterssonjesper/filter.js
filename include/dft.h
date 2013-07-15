@@ -7,6 +7,7 @@
 static float comp(float);
 static float real(float);
 void dft(float*, Complex*, int);
+void inverse_dft(Complex*, float*, int);
 
 // Return complex part of e^phi
 static inline float comp(float phi) {
